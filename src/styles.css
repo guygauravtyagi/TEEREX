@@ -1,0 +1,74 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-color: #2aa1e6;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+    --nav-bar-color: #ffffffaa;
+    --button-text-color: #e8fffa;
+}
+
+[data-theme="dark"] {
+    --primary-color: #97caf3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #161625;
+    --heading-color: #818cab;
+    --nav-bar-color: #000000aa;
+    --button-text-color: #e8fffa;
+}
+
+html,
+body,
+content {
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--font-color);
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3{
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+h5,
+button,
+input[type="button"]  {
+    font-size: 1.2rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
