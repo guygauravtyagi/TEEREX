@@ -1,6 +1,5 @@
-import { ProductState } from "./product/products.reducer";
+import { Product } from "../data-models/product-data-models";
 
-
-export interface AppState {
-    products: ProductState
+export interface AppState { 
+    products: Product[]
 }

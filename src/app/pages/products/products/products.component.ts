@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.state';
-import { SELECT_PRODUCTS } from 'src/app/store/product/product.selectors';
 
 @Component({
   selector: 'app-products',
@@ -10,6 +7,8 @@ import { SELECT_PRODUCTS } from 'src/app/store/product/product.selectors';
 })
 export class ProductsComponent {
 
-  constructor(private store: Store<AppState>) { }
+
+  constructor(
+  ) {  }
 
 }
