@@ -2,7 +2,7 @@
     <div class="product-container">
         <app-filter-menu class="filter-menu"></app-filter-menu>
         <div class="product-list">
-            <app-card *ngFor="let item of products$ | async" [price]="item.price" [image]="item.imageURL"></app-card>
+            <app-card *ngFor="let item of productList" [price]="item.price" [image]="item.imageURL" (cardButtonClicked)="addToCart(item)"></app-card>
         </div>
     </div>
 </div>

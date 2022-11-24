@@ -8,9 +8,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CardComponent {
   @Input() price: number = 0;
   @Input() image: string = './../../../../assets/place-holde.jpg';
-  @Output() cardClicked: EventEmitter<any> = new EventEmitter();
+  @Output() cardButtonClicked: EventEmitter<any> = new EventEmitter();
   
   constructor() { }
 
-  increment() { }
+  addToCart() { 
+    this.cardButtonClicked.emit();
+  }
 }
