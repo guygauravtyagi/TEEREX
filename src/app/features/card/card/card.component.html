@@ -1,9 +1,7 @@
 <div class="card-holder">
-    <img src="./../../../../assets/place-holde.jpg" />
+    <img src="{{image}}" />
     <div class="card-footer">
-        <label>{{count$ | async}}</label>
+        <label>{{price | currency}}</label>
         <app-button (click)="increment()" [value]="'Add to cart'"></app-button>
-        <app-button (click)="decrement()" [value]="'Add to cart'"></app-button>
-        <app-button (click)="reset()" [value]="'Add to cart'"></app-button>
     </div>
 </div>
