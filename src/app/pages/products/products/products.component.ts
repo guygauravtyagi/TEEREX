@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { Product } from 'src/app/data-models/product-data-models';
 import { MainService } from 'src/app/services/main.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -14,6 +15,7 @@ export class ProductsComponent implements OnInit {
 
   products$: Observable<Product[]>
   productList: Product[] = [];
+  color: string = 'blue';
 
   constructor(
     private mainService: MainService,
@@ -30,7 +32,9 @@ export class ProductsComponent implements OnInit {
     )
     this.storageService.getCartUpdateEvent().subscribe(
       product => {
-
+        this.productList.forEach(ele => {
+          if(ele.id === product.id) ele.quantity--;
+        });
       }
     )
   }  
