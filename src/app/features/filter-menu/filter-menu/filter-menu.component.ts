@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class FilterMenuComponent {
 
+
+
+  checkBoxTriggered(event: Event) {
+    console.log(event);
+  }
 }

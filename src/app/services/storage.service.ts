@@ -11,11 +11,11 @@ export class StorageService {
   @Output() cartUpdateEvent = new EventEmitter<Product>();
 
   constructor() {
-    if (localStorage.getItem(this.CART_ITEMS) || localStorage.getItem(this.CART_ITEMS) === null) localStorage.setItem(this.CART_ITEMS, '[]');
+    if (sessionStorage.getItem(this.CART_ITEMS) || sessionStorage.getItem(this.CART_ITEMS) === null) sessionStorage.setItem(this.CART_ITEMS, '[]');
   }
 
   public addToCart(product: Product) {
-    let cart = JSON.parse(<string>localStorage.getItem(this.CART_ITEMS));
+    let cart = JSON.parse(<string>sessionStorage.getItem(this.CART_ITEMS));
     let isPresent = false;
     cart.forEach((element: Cart) => {
       if (element.product.id === product.id) {
@@ -27,12 +27,12 @@ export class StorageService {
       quantity: 1,
       product: product
     });
-    localStorage.setItem(this.CART_ITEMS, JSON.stringify(cart));
+    sessionStorage.setItem(this.CART_ITEMS, JSON.stringify(cart));
     this.cartUpdateEvent.emit(product);
   }
 
   public removeFromCart(product: Product) {
-    let cart: Cart[] = JSON.parse(<string>localStorage.getItem(this.CART_ITEMS));
+    let cart: Cart[] = JSON.parse(<string>sessionStorage.getItem(this.CART_ITEMS));
     let doRemove = false;
     let removeIndex = -1;
     cart.forEach((element: Cart, index: number) => {
@@ -43,7 +43,7 @@ export class StorageService {
       }
     });
     if (doRemove && removeIndex !== -1) cart.splice(removeIndex, 1);
-    localStorage.setItem(this.CART_ITEMS, cart.toString());
+    sessionStorage.setItem(this.CART_ITEMS, cart.toString());
     this.cartUpdateEvent.emit(product);
   }
 
