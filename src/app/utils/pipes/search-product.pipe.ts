@@ -14,5 +14,4 @@ export class SearchProductPipe implements PipeTransform {
     .filter(item => !args[2] || item.gender.toLowerCase() === args[2])
     .filter(item => !args[3] || item.price === args[3]);
   }
-
 }

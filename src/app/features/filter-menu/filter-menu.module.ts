@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterMenuComponent } from './filter-menu/filter-menu.component';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -9,7 +9,8 @@ import { FilterMenuComponent } from './filter-menu/filter-menu.component';
     FilterMenuComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [
     FilterMenuComponent

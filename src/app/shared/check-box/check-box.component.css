@@ -1,0 +1,7 @@
+.check-box-holder {
+    padding: 10px;
+}
+
+.check-box-holder>input {
+    margin-right: 10px;
+}
