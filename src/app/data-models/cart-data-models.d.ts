@@ -1,6 +1,6 @@
 import * as DataModel from './product-data-models';
 
-export interface Cart{
+export interface CartItem{
     quantity: number;
     product: DataModel.Product;
 }
