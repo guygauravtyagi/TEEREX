@@ -13,10 +13,10 @@ export class CheckBoxComponent {
   @Output() isChanged: EventEmitter<any> = new EventEmitter<any>()
 
 
-  boxToggled(isChecked: boolean) {
-    this.isChecked = isChecked;
+  boxToggled() {
+    this.isChecked = !this.isChecked;
     this.isChanged.emit({
-      isChecked: isChecked,
+      isChecked: this.isChecked,
       value: this.value
     });
   }

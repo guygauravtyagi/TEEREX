@@ -92,6 +92,11 @@ export class StorageService {
     sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
   }
 
+  /**
+   * 
+   * @returns Promise of type Product[]
+   * 
+   */
   public async getProductsList(): Promise<Product[]> {
     if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
       let products = await this.mainService.getData();
@@ -100,7 +105,12 @@ export class StorageService {
     return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
   }
 
-  public getCartUpdateEvent() {
+  /**
+   * 
+   * @returns returns event
+   * 
+   */
+  public getCartUpdateEvent(): EventEmitter<Product> {
     return this.cartUpdateEvent;
   }
 }
