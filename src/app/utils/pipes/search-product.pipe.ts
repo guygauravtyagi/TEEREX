@@ -9,9 +9,19 @@ export class SearchProductPipe implements PipeTransform {
 
   transform(value: Product[], ...args: any[]): Product[] {
     return value.filter(item => item.quantity > 0)
-    .filter(item => !args[0] || item.color.toLowerCase() === args[0])
-    .filter(item => !args[1] || item.type.toLowerCase() === args[1])
-    .filter(item => !args[2] || item.gender.toLowerCase() === args[2])
-    .filter(item => !args[3] || item.price === args[3]);
+      .filter(ele => args[0].length === 0 || args[0].includes(ele.color))
+      .filter(ele => args[1].length === 0 || args[1].includes(ele.gender))
+      .filter(ele => {
+        if (args[2].length === 0) return true;
+        else {
+          let flag = false;
+          args[2].forEach((val: any) => {
+            if (val.upperLimit >= ele.price && val.lowerLimit < ele.price)
+              flag = true;
+          })
+          return flag;
+        }
+      })
+      .filter(ele => args[3].length === 0 || args[3].includes(ele.type));
   }
 }

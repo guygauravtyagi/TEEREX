@@ -1,5 +1,5 @@
 <div class="filter" *ngFor="let item of filterList">
     <h5>{{item.title}}</h5>
-    <app-check-box *ngFor="let subItem of item.subMenu" [label]="subItem.name" [isChecked]="subItem.isActive"
+    <app-check-box *ngFor="let subItem of item.subMenu" [label]="subItem.name" [parentId]="item.id" [value]="subItem.name" [isChecked]="subItem.isActive"
         (isChanged)="checkBoxTriggered($event)"></app-check-box>
 </div>

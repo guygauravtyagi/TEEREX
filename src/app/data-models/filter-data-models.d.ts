@@ -1,6 +1,7 @@
 export interface Filter {
+    id: number;
     title: string;
-    subMenu: SubMenu[]
+    subMenu: SubMenu[];
 }
 
 export interface SubMenu {

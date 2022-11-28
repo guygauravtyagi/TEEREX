@@ -1,9 +1,12 @@
 <div class="content">
     <div class="product-container">
-        <app-filter-menu class="filter-menu"></app-filter-menu>
+        <app-filter-menu class="filter-menu" [filterList]="filterList" (filterUpdated)="filter($event)">
+        </app-filter-menu>
         <div class="product-list">
-            <app-card *ngFor="let item of (productList | searchProduct: color)" [price]="item.price" [name]="item.name" [image]="item.imageURL"
-                (cardButtonClicked)="addToCart(item)"></app-card>
+            <app-card
+                *ngFor="let item of (productList | searchProduct: filterObj[0] : filterObj[1] : filterObj[2] : filterObj[3])"
+                [price]="item.price" [name]="item.name" [image]="item.imageURL" (cardButtonClicked)="addToCart(item)">
+            </app-card>
         </div>
     </div>
 </div>

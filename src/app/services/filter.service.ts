@@ -8,57 +8,60 @@ export class FilterService {
 
   public getFilterList(): Filter[] {
     return [{
+      id: 0,
       title: 'Colour',
       subMenu: [{
         isActive: false,
-        name: 'Red'
+        name: 'Red',
       }, {
         isActive: false,
-        name: 'Blue'
+        name: 'Blue',
       }, {
         isActive: false,
-        name: 'Green'
+        name: 'Green',
       }]
     }, {
+      id: 1,
       title: 'Gender',
       subMenu: [{
         isActive: false,
-        name: 'Men'
+        name: 'Men',
       }, {
         isActive: false,
-        name: 'Women'
+        name: 'Women',
       }]
     }, {
+      id: 2,
       title: 'Price',
       subMenu: [{
         isActive: false,
         name: '0 - Rs250',
         upperLimit: 250,
-        lowerLimit: 0
+        lowerLimit: 0,
       }, {
         isActive: false,
         name: 'Rs251 - Rs450',
         upperLimit: 450,
-        lowerLimit: 251
+        lowerLimit: 251,
       }, {
         isActive: false,
         name: 'Rs450',
         upperLimit: 9999999,
-        lowerLimit: 450
+        lowerLimit: 450,
       }]
     }, {
+      id: 3,
       title: 'Type',
       subMenu: [{
         isActive: false,
-        name: 'Polo'
+        name: 'Polo',
       }, {
         isActive: false,
-        name: 'Hoodie'
+        name: 'Hoodie',
       }, {
         isActive: false,
-        name: 'Basic'
+        name: 'Basic',
       }]
     }]
   }
-
 }
