@@ -10,3 +10,9 @@ export interface SubMenu {
     upperLimit?: number;
     lowerLimit?: number;
 }
+
+export interface CheckBoxEvent {
+    isChecked: boolean,
+    value: string,
+    parentId: number,
+  }

@@ -18,7 +18,7 @@ export class ProductsComponent implements OnInit {
   products$: Observable<Product[]>
   productList: Product[] = [];
   filterList: Filter[] = [];
-  filterObj: any[][] = [[], [], [], []];
+  filterObj: unknown[][] = [[], [], [], []];
 
   constructor(
     private mainService: MainService,
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
     this.filterList = this.filterService.getFilterList();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.products$.subscribe(
       (next) => {
         this.productList = next;
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  filter(event: Filter[]) {
+  public filter(event: Filter[]) {
     this.filterObj = [[], [], [], []];
     event.forEach(filter => {
       filter.subMenu.forEach(element => {
@@ -62,7 +62,7 @@ export class ProductsComponent implements OnInit {
     console.log(this.filterObj);
   }
 
-  addToCart(product: Product) {
+  public addToCart(product: Product) {
     this.storageService.addToCart(product);
   }
 

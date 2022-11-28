@@ -24,7 +24,7 @@ export class StorageService {
    * 
    */
   public addToCart(product: Product) {
-    let cart: CartItem[] = this.getCart();
+    const cart = this.getCart();
     let isPresent = false;
     cart.forEach((element: CartItem) => {
       if (element.product.id === product.id) {
@@ -46,7 +46,7 @@ export class StorageService {
    * 
    */
   public removeFromCart(product: Product) {
-    let cart: CartItem[] = this.getCart();
+    const cart = this.getCart();
     let doRemove = false;
     let removeIndex = -1;
     cart.forEach((element: CartItem, index: number) => {
@@ -99,7 +99,7 @@ export class StorageService {
    */
   public async getProductsList(): Promise<Product[]> {
     if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
-      let products = await this.mainService.getData();
+      const products = await this.mainService.getData();
       sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
     }
     return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));

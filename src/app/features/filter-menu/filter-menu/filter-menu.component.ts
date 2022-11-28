@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Filter } from 'src/app/data-models/filter-data-models';
-import { FilterService } from 'src/app/services/filter.service';
+import { CheckBoxEvent, Filter } from 'src/app/data-models/filter-data-models';
 
 @Component({
   selector: 'app-filter-menu',
@@ -12,7 +11,7 @@ export class FilterMenuComponent {
   @Input() filterList: Filter[] = [];
   @Output() filterUpdated: EventEmitter<Filter[]> = new EventEmitter<Filter[]>();
   
-  checkBoxTriggered(event: any) {
+  public checkBoxTriggered(event: CheckBoxEvent) {
     this.filterList.forEach(element => {
       if(element.id === event.parentId) {
         element.subMenu.forEach(ele => {
