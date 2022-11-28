@@ -12,6 +12,6 @@ export class CardComponent {
   @Output() cardButtonClicked: EventEmitter<string> = new EventEmitter();
 
   addToCart() { 
-    this.cardButtonClicked.emit('');
+    this.cardButtonClicked.emit();
   }
 }
