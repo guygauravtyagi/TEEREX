@@ -6,6 +6,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./button.component.css']
 })
 export class ButtonComponent {
-  @Input() value: string = 'Button';
-  @Output() click: EventEmitter<Event> = new EventEmitter();
+  @Input() value = 'Button';
+  @Input() className = 'button-solid';
+  @Output() clickButton: EventEmitter<Event> = new EventEmitter();
+
+  public buttonClicked(event: Event) {
+    this.clickButton.emit(event);
+  }
 }

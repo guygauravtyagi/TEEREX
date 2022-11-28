@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CheckBoxEvent } from 'src/app/data-models/filter-data-models';
 
 @Component({
   selector: 'app-check-box',
@@ -7,17 +8,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CheckBoxComponent {
 
-  @Input() label: string = '';
-  @Input() isChecked: boolean = false;
-  @Input() value: string = '';
-  @Output() isChanged: EventEmitter<any> = new EventEmitter<any>()
+  @Input() label = '';
+  @Input() isChecked = false;
+  @Input() value = '';
+  @Input() parentId = 0;
+  @Output() isChanged: EventEmitter<CheckBoxEvent> = new EventEmitter<CheckBoxEvent>();
 
 
-  boxToggled(isChecked: boolean) {
-    this.isChecked = isChecked;
+  public boxToggled() {
+    this.isChecked = !this.isChecked;
     this.isChanged.emit({
-      isChecked: isChecked,
-      value: this.value
+      isChecked: this.isChecked,
+      value: this.value,
+      parentId: this.parentId,
     });
   }
 

@@ -1,0 +1,6 @@
+<div class="cart-container">
+    <h4>Shopping Cart</h4>
+    <ng-template ngIf="cartItems.length > 0">
+        <app-cart-details *ngFor="let item of cartItems"></app-cart-details>
+    </ng-template>
+</div>

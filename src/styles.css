@@ -11,6 +11,7 @@
     --heading-color: #292922;
     --nav-bar-color: #ffffffaa;
     --button-text-color: #e8fffa;
+    --button-text-color-dark: #32413d;
 }
 
 [data-theme="dark"] {
@@ -21,6 +22,7 @@
     --heading-color: #818cab;
     --nav-bar-color: #000000aa;
     --button-text-color: #e8fffa;
+    --button-text-color-dark: #32413d;
 }
 
 html,

@@ -6,12 +6,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent {
-  @Input() price: number = 0;
-  @Input() name: string = '';
-  @Input() image: string = './../../../../assets/place-holde.jpg';
-  @Output() cardButtonClicked: EventEmitter<any> = new EventEmitter();
-  
-  constructor() { }
+  @Input() price = 0;
+  @Input() name = '';
+  @Input() image = './../../../../assets/place-holde.jpg';
+  @Output() cardButtonClicked: EventEmitter<string> = new EventEmitter();
 
   addToCart() { 
     this.cardButtonClicked.emit();
