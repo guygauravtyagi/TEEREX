@@ -9,6 +9,6 @@ export class DescriptionPicComponent {
 
   @Input() image = './../../../assets/place-holder.jpg';
   @Input() name = 'item';
-  @Input() price = '0';
+  @Input() price = 0;
 
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CartItem } from 'src/app/data-models/cart-data-models';
 
 @Component({
   selector: 'app-cart-details',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./cart-details.component.css']
 })
 export class CartDetailsComponent {
+  @Input() cartItem: CartItem | undefined; 
 
+  deleteItem(event: Event) {
+    console.log(event);
+  }
 }
