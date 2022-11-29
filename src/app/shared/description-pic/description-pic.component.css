@@ -1,0 +1,21 @@
+.descriptio-pic-holder {
+    height: 150px;
+    padding: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.descriptio-pic-holder>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+h5 {
+    padding: 10px;
+    padding-left: 50px;
+}
