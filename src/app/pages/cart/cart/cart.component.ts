@@ -10,10 +10,17 @@ import { StorageService } from 'src/app/services/storage.service';
 export class CartComponent {
 
   public cartItems: CartItem[] = [];
+  public cartTotal = 0;
 
   constructor(private storageService: StorageService) {
     this.cartItems = this.storageService.getCart();
-    console.log(this.cartItems);
+  }
+
+  calculateTotal(cartItems: CartItem[]) {
+    this.cartTotal = 0;
+    cartItems.forEach(item => {
+      this.cartTotal = this.cartTotal + item.product.price * item.quantity;
+    });
   }
 
 }

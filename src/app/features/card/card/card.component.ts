@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CardComponent {
   @Input() price = 0;
   @Input() name = '';
-  @Input() image = './../../../../assets/place-holde.jpg';
+  @Input() image = './../../../../assets/place-holder.jpg';
   @Output() cardButtonClicked: EventEmitter<string> = new EventEmitter();
 
   addToCart() { 
