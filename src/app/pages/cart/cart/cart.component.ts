@@ -14,6 +14,7 @@ export class CartComponent {
 
   constructor(private storageService: StorageService) {
     this.cartItems = this.storageService.getCart();
+    this.calculateTotal(this.cartItems);
   }
 
   calculateTotal(cartItems: CartItem[]) {
