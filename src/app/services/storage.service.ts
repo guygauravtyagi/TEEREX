@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Product } from '../data-models/product-data-models';
 import { CartItem } from '../data-models/cart-data-models';
 import { MainService } from './main.service';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -97,12 +98,14 @@ export class StorageService {
    * @returns Promise of type Product[]
    * 
    */
-  public async getProductsList(): Promise<Product[]> {
-    if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
-      const products = await this.mainService.getData();
-      sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
-    }
-    return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
+  public getProductsList(): Observable<Product[]> {
+    return from((async () => {
+      if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
+        const products = await this.mainService.getData();
+        sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
+      }
+      return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
+    })())
   }
 
   /**

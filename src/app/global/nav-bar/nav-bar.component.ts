@@ -15,11 +15,10 @@ export class NavBarComponent {
   }
 
   constructor(private router: Router) {
-    this.router.events.pipe(
-      filter((e): e is NavigationEnd  => e instanceof NavigationEnd),
-      map((event: NavigationEnd) => {
-        this.updateNavLinks(event.url);
-      })
+    this.router.events.subscribe(
+      (event) => {
+        if (event instanceof NavigationEnd) this.updateNavLinks(event.url);
+      }
     );
   }
 
@@ -40,7 +39,7 @@ export class NavBarComponent {
 
   deactivateAllLinks() {
     for (const [key, value] of Object.entries(this.activateLink)) {
-      console.log(`${key}: ${value}`);
+      this.activateLink[key as keyof typeof this.activateLink] = false;
     }
   }
 }

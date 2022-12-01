@@ -25,14 +25,15 @@ export class ProductsComponent implements OnInit {
     private storageService: StorageService,
     private filterService: FilterService
   ) {
-    this.products$ = this.mainService.getData();
+    this.products$ = this.storageService.getProductsList();
     this.filterList = this.filterService.getFilterList();
   }
 
   public ngOnInit(): void {
     this.products$.subscribe(
-      (next) => {
-        this.productList = next;
+      (data) => {
+        this.productList = data;
+        console.log('I ran', data);
       }
     );
     this.storageService.getCartUpdateEvent().subscribe(
