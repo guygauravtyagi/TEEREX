@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Product } from '../data-models/product-data-models';
 import { CartItem } from '../data-models/cart-data-models';
 import { MainService } from './main.service';
-import { from, Observable } from 'rxjs';
+import { defer, from, lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -99,13 +99,13 @@ export class StorageService {
    * 
    */
   public getProductsList(): Observable<Product[]> {
-    return from((async () => {
+    return defer((async () => {
       if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
-        const products = await this.mainService.getData();
-        sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
+        const products = await lastValueFrom(this.mainService.getData());
+        this.updateProductList(products);
       }
       return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
-    })())
+    }));
   }
 
   /**

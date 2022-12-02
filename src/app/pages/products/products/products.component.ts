@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CartItem } from 'src/app/data-models/cart-data-models';
 import { Filter } from 'src/app/data-models/filter-data-models';
 
 import { Product } from 'src/app/data-models/product-data-models';
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
   products$: Observable<Product[]>
   productList: Product[] = [];
   filterList: Filter[] = [];
-  filterObj: unknown[][] = [[], [], [], []];
+  filterObj: unknown[][] = [[], [], [], [], []];
 
   constructor(
     private mainService: MainService,
@@ -32,22 +33,31 @@ export class ProductsComponent implements OnInit {
   public ngOnInit(): void {
     this.products$.subscribe(
       (data) => {
-        this.productList = data;
-        console.log('I ran', data);
+        this.productList = this.updateProductList(data);
       }
     );
     this.storageService.getCartUpdateEvent().subscribe(
       product => {
-        console.log(product);
         this.productList.forEach(ele => {
           if (ele.id === product.id) ele.quantity--;
         });
+        this.storageService.updateProductList(this.productList);
       }
     );
   }
 
+  private updateProductList(prdoucts: Product[]): Product[] {
+    this.storageService.getCart().forEach((cartItem: CartItem) => {
+      prdoucts.forEach((product) => {
+        if(product.id === cartItem.product.id) product.quantity = product.quantity - cartItem.quantity; 
+      });
+    });
+    this.storageService.updateProductList(prdoucts);
+    return prdoucts;
+  }
+
   public filter(event: Filter[]) {
-    this.filterObj = [[], [], [], []];
+    this.filterObj = [[], [], [], [], []];
     event.forEach(filter => {
       filter.subMenu.forEach(element => {
         if(filter.id === 2 && element.isActive) {
