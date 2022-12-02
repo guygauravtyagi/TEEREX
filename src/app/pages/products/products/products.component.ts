@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
   public ngOnInit(): void {
     this.products$.subscribe(
       (data) => {
-        this.productList = this.updateProductList(data);
+        this.productList = this.storageService.syncProductListWithCart(data);
       }
     );
     this.storageService.getCartUpdateEvent().subscribe(
@@ -44,16 +44,6 @@ export class ProductsComponent implements OnInit {
         this.storageService.updateProductList(this.productList);
       }
     );
-  }
-
-  private updateProductList(prdoucts: Product[]): Product[] {
-    this.storageService.getCart().forEach((cartItem: CartItem) => {
-      prdoucts.forEach((product) => {
-        if(product.id === cartItem.product.id) product.quantity = product.quantity - cartItem.quantity; 
-      });
-    });
-    this.storageService.updateProductList(prdoucts);
-    return prdoucts;
   }
 
   public filter(event: Filter[]) {

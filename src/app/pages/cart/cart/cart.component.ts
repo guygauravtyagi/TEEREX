@@ -24,4 +24,17 @@ export class CartComponent {
     });
   }
 
+  updateQty(event: number, cartItem: CartItem) {
+    let index = -1;
+    this.cartItems.map((item, i) => {
+      if (item.product.id === cartItem.product.id) {
+        item.quantity = event;
+        if (event === 0) index = i;
+      }
+    });
+    if(index !== -1) this.cartItems.splice(index, 1);
+    this.storageService.updateCart(this.cartItems, undefined);
+    this.calculateTotal(this.cartItems);
+  }
+
 }

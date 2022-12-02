@@ -1,5 +1,5 @@
 <div *ngIf="cartItem" class="cart-details-holder">
     <app-description-pic [image]="cartItem.product.imageURL" [name]="cartItem.product.name" [price]="cartItem.product.price"></app-description-pic>
-    <app-drop-down [quantity]="cartItem.quantity"></app-drop-down>
+    <app-drop-down [quantity]="cartItem.quantity" (selection)="updateSelection($event)"></app-drop-down>
     <app-button [className]="'button-outline'" (clickButton)="deleteItem($event)" [value]="'Delete'"></app-button>
 </div>
