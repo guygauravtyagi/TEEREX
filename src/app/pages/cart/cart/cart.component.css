@@ -4,9 +4,29 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 5rem;
+    min-width: 800px;
+    width: 800px;
 }
 
 .cart-container>h4 {
     padding: 3rem;
     font-weight: normal;
+}
+
+.cart-container>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.cart-container>div>h5 {
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.cart-container>div>p {
+    padding: 10px;
+    padding-left: 20px;
 }

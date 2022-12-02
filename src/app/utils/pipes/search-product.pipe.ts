@@ -23,6 +23,10 @@ export class SearchProductPipe implements PipeTransform {
           return flag;
         }
       })
-      .filter(ele => args[3].length === 0 || args[3].includes(ele.type));
+      .filter(ele => args[3].length === 0 || args[3].includes(ele.type))
+      .filter(ele => args[4].length === 0 || (ele.name.toLowerCase().includes(args[4][0]) 
+      || ele.color.toLowerCase().includes(args[4][0]) 
+      || ele.type.toLowerCase().includes(args[4][0]) 
+      || ele.gender.toLowerCase().includes(args[4][0])));
   }
 }

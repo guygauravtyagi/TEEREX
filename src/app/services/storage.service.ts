@@ -2,6 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Product } from '../data-models/product-data-models';
 import { CartItem } from '../data-models/cart-data-models';
 import { MainService } from './main.service';
+import { defer, from, lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -77,9 +78,9 @@ export class StorageService {
    * @emits cardUpdateEvent
    * 
    */
-  public updateCart(cart: CartItem[], product: Product) {
+  public updateCart(cart: CartItem[], product: Product | undefined) {
     sessionStorage.setItem(this.CART_ITEMS, JSON.stringify(cart));
-    this.cartUpdateEvent.emit(product);
+    if (product) this.cartUpdateEvent.emit(product);
   }
 
   /**
@@ -97,12 +98,14 @@ export class StorageService {
    * @returns Promise of type Product[]
    * 
    */
-  public async getProductsList(): Promise<Product[]> {
-    if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
-      const products = await this.mainService.getData();
-      sessionStorage.setItem(this.PRODUCTS_LIST, JSON.stringify(products));
-    }
-    return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
+  public getProductsList(): Observable<Product[]> {
+    return defer((async () => {
+      if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
+        const products = await lastValueFrom(this.mainService.getData());
+        this.updateProductList(products);
+      }
+      return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
+    }));
   }
 
   /**
@@ -112,5 +115,15 @@ export class StorageService {
    */
   public getCartUpdateEvent(): EventEmitter<Product> {
     return this.cartUpdateEvent;
+  }
+
+  public syncProductListWithCart(prdoucts: Product[]): Product[] {
+    this.getCart().forEach((cartItem: CartItem) => {
+      prdoucts.forEach((product) => {
+        if(product.id === cartItem.product.id) product.quantity = product.quantity - cartItem.quantity; 
+      });
+    });
+    this.updateProductList(prdoucts);
+    return prdoucts;
   }
 }

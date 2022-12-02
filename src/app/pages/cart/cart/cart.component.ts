@@ -14,6 +14,7 @@ export class CartComponent {
 
   constructor(private storageService: StorageService) {
     this.cartItems = this.storageService.getCart();
+    this.calculateTotal(this.cartItems);
   }
 
   calculateTotal(cartItems: CartItem[]) {
@@ -21,6 +22,19 @@ export class CartComponent {
     cartItems.forEach(item => {
       this.cartTotal = this.cartTotal + item.product.price * item.quantity;
     });
+  }
+
+  updateQty(event: number, cartItem: CartItem) {
+    let index = -1;
+    this.cartItems.map((item, i) => {
+      if (item.product.id === cartItem.product.id) {
+        item.quantity = event;
+        if (event === 0) index = i;
+      }
+    });
+    if(index !== -1) this.cartItems.splice(index, 1);
+    this.storageService.updateCart(this.cartItems, undefined);
+    this.calculateTotal(this.cartItems);
   }
 
 }

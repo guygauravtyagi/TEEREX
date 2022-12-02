@@ -1,10 +1,11 @@
 <div class="content">
+    <app-search (searched)="checkFor($event)"></app-search>
     <div class="product-container">
         <app-filter-menu class="filter-menu" [filterList]="filterList" (filterUpdated)="filter($event)">
         </app-filter-menu>
-        <div class="product-list">
+        <div class="product-list" *ngIf="productList">
             <app-card
-                *ngFor="let item of (productList | searchProduct: filterObj[0] : filterObj[1] : filterObj[2] : filterObj[3])"
+                *ngFor="let item of (productList | searchProduct: filterObj[0] : filterObj[1] : filterObj[2] : filterObj[3] : filterObj[4])"
                 [price]="item.price" [name]="item.name" [image]="item.imageURL" (cardButtonClicked)="addToCart(item)">
             </app-card>
         </div>

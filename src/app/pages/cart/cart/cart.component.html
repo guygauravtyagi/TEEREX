@@ -1,11 +1,11 @@
 <div class="cart-container">
     <h4>Shopping Cart</h4>
     <ng-template ngIf="cartItems.length > 0">
-        <app-cart-details *ngFor="let item of cartItems" [cartItem]="item"></app-cart-details>
+        <app-cart-details *ngFor="let item of cartItems" [cartItem]="item" (changeQty)="updateQty($event, item)"></app-cart-details>
     </ng-template>
     <hr>
     <div>
         <h5>Total Amount</h5>
-        <p>cartTotal</p>
+        <p>{{cartTotal | currency}}</p>
     </div>
 </div>
