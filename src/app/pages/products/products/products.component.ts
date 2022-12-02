@@ -77,4 +77,9 @@ export class ProductsComponent implements OnInit {
     this.storageService.addToCart(product);
   }
 
+  public checkFor(event: Event) {
+    this.filterObj[4].length = 0;
+    this.filterObj[4].push((<HTMLInputElement>event.target).value.toLowerCase());
+  }
+
 }

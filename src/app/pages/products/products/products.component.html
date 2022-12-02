@@ -1,5 +1,5 @@
 <div class="content">
-    <app-search></app-search>
+    <app-search (searched)="checkFor($event)"></app-search>
     <div class="product-container">
         <app-filter-menu class="filter-menu" [filterList]="filterList" (filterUpdated)="filter($event)">
         </app-filter-menu>
