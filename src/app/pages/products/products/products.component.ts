@@ -24,13 +24,7 @@ export class ProductsComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    if((<Window>event.target).innerWidth < 768) {
-      this.smallScreenFlag = true;
-      console.log(this.smallScreenFlag);
-    } else {
-      this.smallScreenFlag = false;
-      console.log(this.smallScreenFlag);
-    }
+    this.setFiletrs((<Window>event.target).innerWidth);
   }
 
   constructor(
@@ -56,6 +50,17 @@ export class ProductsComponent implements OnInit {
         this.storageService.updateProductList(this.productList);
       }
     );
+    this.setFiletrs(window.innerWidth);
+  }
+
+  private setFiletrs(size: number) {
+    if(size < 768) {
+      this.smallScreenFlag = true;
+      console.log(this.smallScreenFlag);
+    } else {
+      this.smallScreenFlag = false;
+      console.log(this.smallScreenFlag);
+    }
   }
 
   public filter(event: Filter[]) {

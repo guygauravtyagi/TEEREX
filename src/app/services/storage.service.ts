@@ -100,10 +100,8 @@ export class StorageService {
    */
   public getProductsList(): Observable<Product[]> {
     return defer((async () => {
-      if (!sessionStorage.getItem(this.PRODUCTS_LIST) || sessionStorage.getItem(this.PRODUCTS_LIST) === null) {
-        const products = await lastValueFrom(this.mainService.getData());
-        this.updateProductList(products);
-      }
+      const products = await lastValueFrom(this.mainService.getData());
+      this.updateProductList(products);
       return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
     }));
   }
@@ -120,7 +118,7 @@ export class StorageService {
   public syncProductListWithCart(prdoucts: Product[]): Product[] {
     this.getCart().forEach((cartItem: CartItem) => {
       prdoucts.forEach((product) => {
-        if(product.id === cartItem.product.id) product.quantity = product.quantity - cartItem.quantity; 
+        if (product.id === cartItem.product.id) product.quantity = product.quantity - cartItem.quantity;
       });
     });
     this.updateProductList(prdoucts);

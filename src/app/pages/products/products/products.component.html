@@ -1,7 +1,9 @@
 <div class="content">
-    <app-search (searched)="checkFor($event)"></app-search>
-    <app-icon-button [image]="'./../../../assets/cart-icon.png'" (click)="toggleMenu()" *ngIf="smallScreenFlag">
-    </app-icon-button>
+    <div class="search-area">
+        <app-search (searched)="checkFor($event)"></app-search>
+        <app-icon-button [image]="'./../../../assets/filter.png'" (click)="toggleMenu()" *ngIf="smallScreenFlag">
+        </app-icon-button>
+    </div>
     <div class="product-container">
         <div class="filter-menu" *ngIf="!smallScreenFlag">
             <ng-container *ngTemplateOutlet="FilterMenu"></ng-container>
@@ -14,7 +16,11 @@
         </div>
     </div>
     <div class="filter-modal" *ngIf="smallScreenFlag && showModal">
-
+        <div>
+            <ng-container *ngTemplateOutlet="FilterMenu"></ng-container>
+            <app-icon-button class="cancel-button" [image]="'./../../../assets/cancel.png'" (click)="toggleMenu()" *ngIf="smallScreenFlag">
+            </app-icon-button>
+        </div>
     </div>
 </div>
 
