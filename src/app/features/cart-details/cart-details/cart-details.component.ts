@@ -15,7 +15,7 @@ export class CartDetailsComponent implements OnChanges {
     this.cartItem = (<CartItem>changes['cartItem'].currentValue);
   }
 
-  public deleteItem(event: Event) {
+  public deleteItem() {
     this.changeQty.emit(0);
   }
 

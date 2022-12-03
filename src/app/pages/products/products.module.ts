@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsComponent } from './products/products.component';
 import { CardModule, FilterMenuModule, SearchModule } from 'src/app/features';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { UtilsModule } from 'src/app/utils/utils.module';
 
 
@@ -18,6 +19,7 @@ import { UtilsModule } from 'src/app/utils/utils.module';
     FilterMenuModule,
     SearchModule,
     UtilsModule,
+    SharedModule
   ]
 })
 export class ProductsModule { }
