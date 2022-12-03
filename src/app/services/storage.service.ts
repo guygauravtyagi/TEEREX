@@ -2,7 +2,7 @@ import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Product } from '../data-models/product-data-models';
 import { CartItem } from '../data-models/cart-data-models';
 import { MainService } from './main.service';
-import { defer, from, lastValueFrom, Observable } from 'rxjs';
+import { defer, lastValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

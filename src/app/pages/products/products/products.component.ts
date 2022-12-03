@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartItem } from 'src/app/data-models/cart-data-models';
 import { Filter } from 'src/app/data-models/filter-data-models';
 
 import { Product } from 'src/app/data-models/product-data-models';
@@ -20,6 +19,19 @@ export class ProductsComponent implements OnInit {
   productList: Product[] = [];
   filterList: Filter[] = [];
   filterObj: unknown[][] = [[], [], [], [], []];
+  smallScreenFlag = false;
+  showModal = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if((<Window>event.target).innerWidth < 768) {
+      this.smallScreenFlag = true;
+      console.log(this.smallScreenFlag);
+    } else {
+      this.smallScreenFlag = false;
+      console.log(this.smallScreenFlag);
+    }
+  }
 
   constructor(
     private mainService: MainService,
@@ -50,7 +62,7 @@ export class ProductsComponent implements OnInit {
     this.filterObj = [[], [], [], [], []];
     event.forEach(filter => {
       filter.subMenu.forEach(element => {
-        if(filter.id === 2 && element.isActive) {
+        if (filter.id === 2 && element.isActive) {
           this.filterObj[filter.id].push({
             upperLimit: element.upperLimit,
             lowerLimit: element.lowerLimit
@@ -65,6 +77,10 @@ export class ProductsComponent implements OnInit {
 
   public addToCart(product: Product) {
     this.storageService.addToCart(product);
+  }
+
+  public toggleMenu() {
+    this.showModal = !this.showModal;
   }
 
   public checkFor(event: Event) {
