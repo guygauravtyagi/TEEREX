@@ -8,7 +8,7 @@ import { GlobalModule } from './global/global.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
