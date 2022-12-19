@@ -100,7 +100,12 @@ export class StorageService {
    */
   public getProductsList(): Observable<Product[]> {
     return defer((async () => {
-      const products = await lastValueFrom(this.mainService.getData());
+      let products: Product[] = [];
+      try {
+        products = await lastValueFrom(this.mainService.getData());
+      } catch (e) {
+        console.log('In catch');
+      }
       this.updateProductList(products);
       return JSON.parse(<string>sessionStorage.getItem(this.PRODUCTS_LIST));
     }));
