@@ -4,8 +4,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: 5rem;
-    min-width: 800px;
-    width: 800px;
+    width: calc(100% - 10rem);
 }
 
 .cart-container>h4 {

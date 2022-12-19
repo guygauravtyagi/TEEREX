@@ -1,5 +1,3 @@
-<div class="select-holder">
-    <select name="Kartoos" id="Bucckle" (change)="emitSelection($event)">
-        <option *ngFor="let item of list" [value]="item">Qty : {{item}}</option>
-    </select>
-</div>
+<select name="Kartoos" id="Bucckle" (change)="emitSelection($event)">
+    <option *ngFor="let item of list" [value]="item">Qty : {{item}}</option>
+</select>
