@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div *ngIf="!productList.length">
         <app-empty-product></app-empty-product>
     </div>
 </div>
