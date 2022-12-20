@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { DropDownComponent } from './drop-down.component';
 
@@ -8,6 +9,9 @@ describe('DropDownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [ DropDownComponent ]
     })
     .compileComponents();
