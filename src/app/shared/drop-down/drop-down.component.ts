@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 export class DropDownComponent implements OnInit, OnChanges {
 
   @Input() quantity = 0;
+  @Input() limitList = 0;
   @Output() selection: EventEmitter<number> = new EventEmitter<number>();
   list: number[] = [];
 
@@ -18,12 +19,11 @@ export class DropDownComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.quantity = changes['quantity'].currentValue;
-    this.updateList();
   }
 
   updateList() {
     this.list = [];
-    for(let i = this.quantity; i >= 0; i--) {
+    for(let i = this.limitList; i >= 0; i--) {
       this.list.push(i);
     }
   }
