@@ -24,4 +24,10 @@ describe('ButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit when the button is clicked', () => {
+    spyOn(component, 'buttonClicked');
+    button.nativeElement.click();
+    expect(component.buttonClicked).toHaveBeenCalled();
+  });
 });

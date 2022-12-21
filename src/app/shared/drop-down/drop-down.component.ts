@@ -14,18 +14,19 @@ export class DropDownComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-    this.updateList();
+    this.list = this.updateList(this.limitList);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.quantity = changes['quantity'].currentValue;
   }
 
-  updateList() {
-    this.list = [];
-    for(let i = this.limitList; i >= 0; i--) {
-      this.list.push(i);
+  updateList(lim: number): number[] {
+    const arr = [];
+    for(let i = lim; i >= 0; i--) {
+      arr.push(i);
     }
+    return arr;
   }
 
   public emitSelection(event: Event) {
