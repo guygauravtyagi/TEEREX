@@ -4,7 +4,6 @@ import { Filter } from 'src/app/data-models/filter-data-models';
 
 import { Product } from 'src/app/data-models/product-data-models';
 import { FilterService } from 'src/app/services/filter.service';
-import { MainService } from 'src/app/services/main.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 
@@ -28,7 +27,6 @@ export class ProductsComponent implements OnInit {
   }
 
   constructor(
-    private mainService: MainService,
     private storageService: StorageService,
     private filterService: FilterService
   ) {
@@ -77,7 +75,6 @@ export class ProductsComponent implements OnInit {
           this.filterObj[filter.id].push(element.name);
       });
     });
-    console.log(this.filterObj);
   }
 
   public addToCart(product: Product) {
